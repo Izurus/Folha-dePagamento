@@ -1,0 +1,306 @@
+import java.util.Scanner;
+import java.io.IOException;
+
+public class Main {
+
+    public static int Dias_por_Semana() {
+
+        Scanner ler = new Scanner(System.in);
+
+        int DiasP_semana = 0;
+        
+        System.out.println("Digite a quantiade de dias que se trabalha na semana: ");
+
+        DiasP_semana = ler.nextInt();
+
+        return DiasP_semana;
+
+    }
+
+    public static double Horas_trabalhasdasPdia() {
+
+        Scanner ler = new Scanner(System.in);
+
+        double horasP_dia;
+
+        System.out.
+        println("Digite a quantidade de horas que se trabalha por dia: ");
+
+        horasP_dia = ler.nextDouble();
+
+        return horasP_dia;
+
+    }
+    
+
+    public static void main(String[] args) {
+
+        Scanner ler = new Scanner(System.in);
+
+        int escolha = 0,Opcao=0, DiasP_semana = 0, perigo = 0, GrauDeRisco = 0,dias=0;
+        int dependentes=0;
+        
+        double periculosidade = 0, SalarioMinimo = 0,salarioHora = 0;
+        double salario_bruto = 0, horasP_dia = 0, almoco = 0;
+        double salobridade = 0,ValeT_diponibilizado=0;
+        double AbaixoDosSeis=0,vale=0,INSS=0,aliquotaEfetiva=0;
+        double salarioBase=0,Aliquota_efetivada=0;
+        double baseDeCalculo=0,pensao=0,deducoes=0,FGTS=0,Tabela=0;
+        double IRRF=0,Desconto_IRRF=0,vale_alimentacao=0;
+        double jornadaMensal=0,jornadaSemanal=0,vale_transporte=0,salario=0; 
+        double sal_liquido=0,Acrescimo=0,menos=0;
+        
+        String nome,MesReferenci,cargo,data;
+        
+        System.out.print("              ###### FOLHA DE PAGAMENTO ###### \n");
+        System.out.print("           ----------------Passos--------------\n");
+        System.out.print("           |----------------------------------|\n");
+        System.out.print("           | 1.Calcular a Jornada de Trabalho |\n");
+        System.out.print("           | 2.Calcular de Adicionais         |\n");
+        System.out.print("           | 3.Cálculo de Benefícios          |\n");
+        System.out.print("           | 4.Cálculo de Descontos           |\n");
+        System.out.print("           | 5.Cálculo do salário liquido     |\n");
+        System.out.print("           |----------------------------------|\n");
+        
+        //IF1
+
+            System.out.println("Digite algumas informações antes de começar\n");
+            
+            System.out.println("Digite o  nome ");
+            nome = ler.nextLine();
+            
+            System.out.println("Digite o mês de referência (exemplo: janeiro de 2023): ");
+            MesReferenci = ler.nextLine();
+            
+            System.out.println("Digite o cargo: ");
+            cargo = ler.nextLine();
+            
+            System.out.println("Digite a data de admissão (exempl: 01/12/2010) ");
+            data = ler.nextLine();
+            
+            System.out.println("Digite o salário ");
+            salario = ler.nextDouble();
+            
+            System.out.println("Digite o valor do  salário bruto: ");
+            salario_bruto = ler.nextDouble();
+
+            horasP_dia = Horas_trabalhasdasPdia();
+
+            System.out.println("Digite o tempo de almoço ");
+
+            almoco = ler.nextDouble();
+
+            DiasP_semana = Dias_por_Semana();
+
+                jornadaSemanal = horasP_dia * DiasP_semana;
+                
+                System.out.println("Jornada semanal: "+jornadaSemanal);
+        
+                jornadaMensal = jornadaSemanal * 5;
+        
+                System.out.println("Jornada mensal: "+jornadaMensal);
+        
+                salarioHora = salario_bruto / jornadaMensal;
+
+            //================================================================
+               System.out.println("O salário por hora é de: " + salarioHora);
+            //=================================================================
+        
+        //IF2
+
+            System.out.print("\n");
+
+            System.out.print("##-----------------------Digite um número----------------------------------##\n");
+            System.out.print("|--------O meu trabalho é perigoso e apresneta risco de morte iminente------|\n");
+            System.out.print("|--------------------------| 1-Sim 2-Não |----------------------------------|\n");
+            System.out.print("|---------------------------------------------------------------------------|\n");
+            perigo = ler.nextInt();
+
+            if (perigo == 1) {
+
+                //===============================
+                periculosidade = (salario_bruto * 0.30);
+                //===============================
+
+                System.out.print("O adicional de periculosidade é de: " +periculosidade);
+
+            } else {
+                System.out.print("Você não tem acesso a esse direito");
+            }
+
+            perigo = 0;
+
+            System.out.print("\n");
+
+            System.out.print("##-----------------------Digite um número----------------------------------##\n");
+            System.out.print("|--------O meu trabalho apresenta riscos a minha saude----------------------|\n");
+            System.out.print("|--------------------------| 1-Sim 2-Não |----------------------------------|\n");
+            System.out.print("|---------------------------------------------------------------------------|\n");
+            perigo = ler.nextInt();
+
+            if (perigo == 1) {
+
+                System.out.print("Digite o grau de risco: ");
+
+                GrauDeRisco = ler.nextInt();
+
+                if ((GrauDeRisco == 10) || (GrauDeRisco == 20) || (GrauDeRisco == 40)) {
+                    
+                    System.out. print("Digite o salário minimo da sua região: ");
+                    SalarioMinimo = ler.nextDouble();
+
+                    //============================================
+                    if(GrauDeRisco==10){
+                        salobridade=SalarioMinimo*0.10;
+                        
+                    }
+                    if(GrauDeRisco == 20){
+                        salobridade=SalarioMinimo*0.20;
+                    }    
+                    if(GrauDeRisco==40){
+                        salobridade=SalarioMinimo*0.40;
+                        
+                    }
+                    //============================================
+                    
+                    System.out.println("O adicional de insalubridade é de: " + salobridade);
+                } else {
+                    System.out.print("Este grau de risco não existe");
+                }
+
+            }
+
+       //IF3
+                    
+            System.out.print("           |------------- Beneficios --------------|\n");
+            System.out.print("           |   Calcular o desconto vale transporte |\n");
+            System.out.print("           |   Calcular o desconto vale alimentação|\n");
+            System.out.print("           |---------------------------------------|\n");      
+                        
+                        System.out.println("Digite o valor do vale transporte diponibilizado: ");
+                        ValeT_diponibilizado=ler.nextDouble();
+                     
+                        AbaixoDosSeis=salario_bruto*0.06;
+                       
+                        if(ValeT_diponibilizado<AbaixoDosSeis){
+                           //=================================== 
+                            vale_transporte=ValeT_diponibilizado;
+                           //=================================== 
+                            System.out.println("O valor de desconto do vale transporte é de: "+vale_transporte) ;
+                            
+                        }else{ 
+                            vale_transporte=AbaixoDosSeis;
+                            
+                            System.out.println("O valor de desconto do vale transporte é de: "+vale_transporte);  }
+                        
+                        dias=Dias_por_Semana();
+                        System.out.println(" Digite o valor do vale alimentação (diário): ");
+                        vale=ler.nextDouble();
+                        //==========================
+                         vale_alimentacao=vale*dias;
+                        //========================== 
+                        System.out.println("O valor do vale alimentação é de: "+(vale*dias));
+                        
+        //IF4
+            
+            System.out.print("\n");  
+            System.out.print("           |-------------------|\n");
+            System.out.print("           |   Calcular o INSS |\n");
+            System.out.print("           |   Calcular o FGTS |\n");
+            System.out.print("           |   Calcular o IRRF |\n");
+            System.out.print("           |-------------------|\n");
+            
+            if(salario_bruto<=1302.00 || salario_bruto>1302.00){
+                INSS=salario_bruto*07.5;
+
+            }
+            
+            if(salario_bruto>1302.00){
+                INSS=salario_bruto*0.09;
+                
+            }
+            if(salario_bruto>2571.29 && salario_bruto<3856.95 || salario_bruto>3856.95 ){
+                INSS=salario_bruto*0.12;
+                
+            }
+            if(salario_bruto>3856.94 && salario_bruto< 7507.50 || salario_bruto> 7507.50){
+                INSS=salario_bruto*0.14;
+               
+            }
+            
+            System.out.println("O valor a contribuir para o INSS é de: "+INSS);
+            //===========================================
+            aliquotaEfetiva=(INSS/salario_bruto)*100;
+            //==========================================
+            System.out.println("O valor da aliquota efetiva encima do salário bruto é de: "+aliquotaEfetiva+"%");
+          
+              //========================= 
+              FGTS=salario_bruto*0.08;
+              //=========================        
+             
+                  System.out.println("Caso não pague ou não tenha pessoas dependentes, coloque '0' ");
+                  
+                  System.out.println("Digite o número de pessoas dependentes de você: ");
+                  dependentes=ler.nextInt();
+                  
+                  System.out.println("Digite o valor pago para a pensão alimenticia: ");
+                  pensao=ler.nextDouble();
+                  
+                  System.out.println("Digite o valor de outras deduções: ");
+                  deducoes=ler.nextDouble();
+                  
+                  baseDeCalculo=salario_bruto-((dependentes*189.59)+pensao+deducoes+INSS);
+                  System.out.println("Base de calculo: "+baseDeCalculo);
+                  
+                    if(baseDeCalculo > 1903.98 && baseDeCalculo<2826.66){
+                        Tabela=baseDeCalculo*07.5;
+                        IRRF=142.80;
+                    }  
+                    if(baseDeCalculo > 2826.65 && baseDeCalculo< 3751.06){
+                        Tabela=baseDeCalculo*0.15;
+                        IRRF=354.80;
+                    }
+                    if(baseDeCalculo >  3751.05 && baseDeCalculo< 4664.69){
+                        Tabela=baseDeCalculo*(22.5/100);
+                        IRRF=636.13;
+                    }
+                    if(baseDeCalculo > 4.66468){
+                        Tabela=baseDeCalculo*(27.5/100);
+                        IRRF=869.36;
+                    }
+                    Desconto_IRRF=Tabela-IRRF;
+                    Aliquota_efetivada=Desconto_IRRF/salario_bruto;
+                    
+                    System.out.println("Aliquota_efetivada: "+Aliquota_efetivada);  
+           
+           //=====================================================
+            Acrescimo=salario_bruto+salobridade+periculosidade;
+            menos=INSS+FGTS+IRRF;
+            sal_liquido=menos-Acrescimo;
+            //====================================================
+            
+        System.out.print("  ############ FOLHA DE PAGAMENTO ############  \n");
+        System.out.print("   Nome do colaborador: "+nome+"                \n");
+        System.out.print("   Data de admissão: "+data+"                   \n");
+        System.out.print("   Mês de referência: "+MesReferenci+"          \n");
+        System.out.print("   Cargo do colaborador: "+cargo+"              \n");
+        System.out.print("   ----------------Proventos------------------- \n");
+        System.out.print("   Salário do colaborador: "+salario+"          \n");    
+        System.out.print("   periculosidade: "+periculosidade+"           \n");
+        System.out.print("   salobridade: "+salobridade+"                 \n");
+        System.out.print("  -----------------Descontos------------------- \n");
+        System.out.print("   INSS: "+INSS+" IRRF "+IRRF+" FGTS: "+FGTS+"  \n");
+        System.out.print("   base de calculo: "+baseDeCalculo+"           \n");
+        System.out.print("   vale transporte : "+vale_transporte+"        \n");
+        System.out.print("   vale refeição: "+vale_alimentacao+"          \n");
+        System.out.print("   ------------------Salário-------------------\n");
+        System.out.print("   salario bruto: "+salario_bruto+"             \n");
+        System.out.print("   salario por hora: "+salarioHora+"            \n");
+        System.out.print("   salario liquido: "+sal_liquido+"             \n");
+        System.out.print("  --------------------------------------------- \n");
+        
+    }
+    
+        
+
+}
