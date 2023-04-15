@@ -1,2 +1,2 @@
-# Folha-dePagamento
- Folha de pagamento simples em java
+# Folha de Pagamento
+ Folha de pagamento simples em java.
